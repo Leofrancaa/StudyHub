@@ -1,0 +1,45 @@
+/**
+ * Ícones que o conteúdo pode referenciar por nome.
+ * Lista fechada: valida no build e evita empacotar a biblioteca inteira.
+ */
+export const CONTENT_ICON_NAMES = [
+  "Award",
+  "Binary",
+  "BookOpen",
+  "Bot",
+  "Brain",
+  "BrainCircuit",
+  "Calculator",
+  "Camera",
+  "ChartLine",
+  "Code",
+  "Cog",
+  "Cpu",
+  "Database",
+  "Eye",
+  "Factory",
+  "FlaskConical",
+  "Gauge",
+  "GraduationCap",
+  "Image",
+  "Layers",
+  "Lightbulb",
+  "Mail",
+  "MessageSquare",
+  "Network",
+  "Puzzle",
+  "Rocket",
+  "Ruler",
+  "Scale",
+  "Search",
+  "ShieldCheck",
+  "Sparkles",
+  "Sprout",
+  "Target",
+  "Users",
+  "Workflow",
+  "Wrench",
+  "Zap",
+] as const;
+
+export type ContentIconName = (typeof CONTENT_ICON_NAMES)[number];
