@@ -135,6 +135,19 @@ export const module01 = defineModule({
       ],
     },
     {
+      id: "treino-interativo",
+      tags: ["treino", "modelo-parametros"],
+      blocks: [
+        { type: "heading", eyebrow: "Mão na massa", text: "Seja você o algoritmo de treino" },
+        {
+          type: "interactive-3d",
+          sceneId: "regression-fit",
+          caption:
+            "Mexa em w e b até as linhas laranjas (os erros) ficarem curtas. O MSE é a média dos erros ao quadrado: treinar é exatamente procurar os parâmetros que o deixam mínimo.",
+        },
+      ],
+    },
+    {
       id: "regras-vs-ml",
       tags: ["regras-vs-ml"],
       blocks: [

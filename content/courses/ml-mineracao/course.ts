@@ -1,6 +1,14 @@
 import { defineCourse } from "@/lib/content/define";
 import { module01 } from "./modules/01-o-que-e-ia";
 import { quiz01 } from "./modules/01-o-que-e-ia.quiz";
+import { module02 } from "./modules/02-dados-qualidade";
+import { quiz02 } from "./modules/02-dados-qualidade.quiz";
+import { module03 } from "./modules/03-data-warehouse";
+import { quiz03 } from "./modules/03-data-warehouse.quiz";
+import { module04 } from "./modules/04-processo";
+import { quiz04 } from "./modules/04-processo.quiz";
+import { module05 } from "./modules/05-eda-visualizacao";
+import { quiz05 } from "./modules/05-eda-visualizacao.quiz";
 
 export const mlMineracao = defineCourse({
   slug: "ml-mineracao",
@@ -12,12 +20,14 @@ export const mlMineracao = defineCourse({
   level: "Do básico ao avançado",
   estimatedHours: 40,
   theme: { from: "#7c3aed", to: "#0e7490" },
-  modules: [{ ...module01, quiz: quiz01 }],
+  modules: [
+    { ...module01, quiz: quiz01 },
+    { ...module02, quiz: quiz02 },
+    { ...module03, quiz: quiz03 },
+    { ...module04, quiz: quiz04 },
+    { ...module05, quiz: quiz05 },
+  ],
   upcoming: [
-    { title: "Dados: qualidade, ciclo de vida e LGPD", description: "Dimensões de qualidade, representatividade, governança e anotação." },
-    { title: "Data Warehouse, ETL e OLAP", description: "OLTP × OLAP, esquema estrela e floco de neve, ETL e operações OLAP." },
-    { title: "Processo: CRISP-DM e pipeline de IA", description: "KDD, CRISP-DM e como estruturar um projeto de ML." },
-    { title: "Análise exploratória e visualização", description: "Estatística descritiva, hipóteses e o gráfico certo para cada pergunta." },
     { title: "Preparação de dados e features", description: "Limpeza, encoding, normalização, seleção de atributos e data leakage." },
     { title: "Avaliação de modelos", description: "Matriz de confusão, precision, recall, validação cruzada e viés-variância." },
     { title: "Algoritmos clássicos", description: "KNN, Naive Bayes, regressão linear, regressão logística e árvores." },
