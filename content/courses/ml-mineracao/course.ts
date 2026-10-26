@@ -21,6 +21,8 @@ import { module10 } from "./modules/10-poucos-rotulos";
 import { quiz10 } from "./modules/10-poucos-rotulos.quiz";
 import { module11 } from "./modules/11-deep-learning";
 import { quiz11 } from "./modules/11-deep-learning.quiz";
+import { module12 } from "./modules/12-visao-generativa";
+import { quiz12 } from "./modules/12-visao-generativa.quiz";
 
 export const mlMineracao = defineCourse({
   slug: "ml-mineracao",
@@ -30,7 +32,7 @@ export const mlMineracao = defineCourse({
     "Fundamentos de IA, dados, Data Warehouse, análise exploratória, modelos clássicos, avaliação, ensembles, explicabilidade, Deep Learning e visão computacional. Baseado nas disciplinas de ML e Mineração de Dados do SENAI CIMATEC (2026.2).",
   icon: "BrainCircuit",
   level: "Do básico ao avançado",
-  estimatedHours: 40,
+  estimatedHours: 15,
   theme: { from: "#7c3aed", to: "#0e7490" },
   modules: [
     { ...module01, quiz: quiz01 },
@@ -44,8 +46,6 @@ export const mlMineracao = defineCourse({
     { ...module09, quiz: quiz09 },
     { ...module10, quiz: quiz10 },
     { ...module11, quiz: quiz11 },
-  ],
-  upcoming: [
-    { title: "Visão computacional e IA generativa", description: "CNNs, tarefas de visão e fundamentos de IA generativa." },
+    { ...module12, quiz: quiz12 },
   ],
 });
