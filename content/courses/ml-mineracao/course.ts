@@ -9,6 +9,10 @@ import { module04 } from "./modules/04-processo";
 import { quiz04 } from "./modules/04-processo.quiz";
 import { module05 } from "./modules/05-eda-visualizacao";
 import { quiz05 } from "./modules/05-eda-visualizacao.quiz";
+import { module06 } from "./modules/06-preparacao-features";
+import { quiz06 } from "./modules/06-preparacao-features.quiz";
+import { module07 } from "./modules/07-avaliacao";
+import { quiz07 } from "./modules/07-avaliacao.quiz";
 
 export const mlMineracao = defineCourse({
   slug: "ml-mineracao",
@@ -26,10 +30,10 @@ export const mlMineracao = defineCourse({
     { ...module03, quiz: quiz03 },
     { ...module04, quiz: quiz04 },
     { ...module05, quiz: quiz05 },
+    { ...module06, quiz: quiz06 },
+    { ...module07, quiz: quiz07 },
   ],
   upcoming: [
-    { title: "Preparação de dados e features", description: "Limpeza, encoding, normalização, seleção de atributos e data leakage." },
-    { title: "Avaliação de modelos", description: "Matriz de confusão, precision, recall, validação cruzada e viés-variância." },
     { title: "Algoritmos clássicos", description: "KNN, Naive Bayes, regressão linear, regressão logística e árvores." },
     { title: "Ensembles e explicabilidade", description: "Bagging, Random Forest, boosting, stacking e SHAP." },
     { title: "Aprender com poucos rótulos", description: "Não supervisionado, semi-supervisionado, active learning e self-supervised." },
