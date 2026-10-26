@@ -19,6 +19,8 @@ import { module09 } from "./modules/09-ensembles-xai";
 import { quiz09 } from "./modules/09-ensembles-xai.quiz";
 import { module10 } from "./modules/10-poucos-rotulos";
 import { quiz10 } from "./modules/10-poucos-rotulos.quiz";
+import { module11 } from "./modules/11-deep-learning";
+import { quiz11 } from "./modules/11-deep-learning.quiz";
 
 export const mlMineracao = defineCourse({
   slug: "ml-mineracao",
@@ -41,9 +43,9 @@ export const mlMineracao = defineCourse({
     { ...module08, quiz: quiz08 },
     { ...module09, quiz: quiz09 },
     { ...module10, quiz: quiz10 },
+    { ...module11, quiz: quiz11 },
   ],
   upcoming: [
-    { title: "Deep Learning", description: "Perceptron, funções de ativação, loss, gradiente e backpropagation." },
     { title: "Visão computacional e IA generativa", description: "CNNs, tarefas de visão e fundamentos de IA generativa." },
   ],
 });
