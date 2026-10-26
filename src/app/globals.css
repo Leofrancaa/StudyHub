@@ -125,6 +125,15 @@ body {
     outline-offset: 2px;
   }
 
+  /* Tailwind 4 removeu o cursor de mãozinha padrão em botões; restaura para tudo que é clicável. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  select:not(:disabled),
+  summary,
+  label:has(> input:not(:disabled)) {
+    cursor: pointer;
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--accent) 30%, transparent);
   }
