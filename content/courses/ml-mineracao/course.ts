@@ -17,6 +17,8 @@ import { module08 } from "./modules/08-algoritmos-classicos";
 import { quiz08 } from "./modules/08-algoritmos-classicos.quiz";
 import { module09 } from "./modules/09-ensembles-xai";
 import { quiz09 } from "./modules/09-ensembles-xai.quiz";
+import { module10 } from "./modules/10-poucos-rotulos";
+import { quiz10 } from "./modules/10-poucos-rotulos.quiz";
 
 export const mlMineracao = defineCourse({
   slug: "ml-mineracao",
@@ -38,9 +40,9 @@ export const mlMineracao = defineCourse({
     { ...module07, quiz: quiz07 },
     { ...module08, quiz: quiz08 },
     { ...module09, quiz: quiz09 },
+    { ...module10, quiz: quiz10 },
   ],
   upcoming: [
-    { title: "Aprender com poucos rótulos", description: "Não supervisionado, semi-supervisionado, active learning e self-supervised." },
     { title: "Deep Learning", description: "Perceptron, funções de ativação, loss, gradiente e backpropagation." },
     { title: "Visão computacional e IA generativa", description: "CNNs, tarefas de visão e fundamentos de IA generativa." },
   ],
