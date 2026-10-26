@@ -69,6 +69,7 @@ src/components/       ui, slides, quiz, three, gamification, course, layout
    - tag de questão que não aparece em nenhum slide;
    - módulo sem analogia, sem mini-check ou sem resumo no último slide;
    - ids repetidos, explicações curtas, opções duplicadas, associação com menos de 3 pares;
+   - viés de tamanho nas questões de resposta única: a certa não pode ser > 1,4× a maior errada, nem a mais longa em mais de 35% das questões do módulo;
    - de 8 a 15 slides por módulo e até 6 blocos por slide.
 5. Ícones vêm de uma lista fechada (`src/lib/content/icons.ts`); cenas 3D, de `src/lib/content/scenes.ts`. Nova cena: crie o componente em `src/components/three/scenes/`, adicione o id e o loader em `src/components/three/registry.ts`.
 

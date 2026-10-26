@@ -36,10 +36,10 @@ export const quiz01 = defineQuiz([
     tags: ["modelo-parametros"],
     prompt: "Em ŷ = f(x; θ), o que θ representa?",
     options: [
-      { id: "a", text: "A entrada do modelo" },
+      { id: "a", text: "A entrada do modelo, ou seja, as features" },
       { id: "b", text: "Os parâmetros ajustados no treino" },
-      { id: "c", text: "A previsão do modelo" },
-      { id: "d", text: "O valor real observado" },
+      { id: "c", text: "A previsão que o modelo devolve para x" },
+      { id: "d", text: "O valor real observado no histórico" },
     ],
     answer: "b",
     explanation:
@@ -136,9 +136,9 @@ export const quiz01 = defineQuiz([
     prompt: "O que caracteriza a IA generativa?",
     options: [
       { id: "a", text: "Gera conteúdo novo, como texto, imagem ou código" },
-      { id: "b", text: "Só classifica dados em categorias" },
-      { id: "c", text: "Funciona sem nenhum dado de treino" },
-      { id: "d", text: "Usa apenas regras escritas à mão" },
+      { id: "b", text: "Classifica dados em categorias com alta precisão" },
+      { id: "c", text: "Funciona sem dados de treino, só com regras lógicas" },
+      { id: "d", text: "Prevê valores numéricos futuros a partir do histórico" },
     ],
     answer: "a",
     explanation:
@@ -152,8 +152,8 @@ export const quiz01 = defineQuiz([
     prompt: "Qual é o círculo mais amplo da hierarquia?",
     options: [
       { id: "a", text: "Inteligência Artificial" },
-      { id: "b", text: "Machine Learning" },
-      { id: "c", text: "Deep Learning" },
+      { id: "b", text: "Machine Learning (aprendizado de máquina)" },
+      { id: "c", text: "Deep Learning, com redes neurais" },
       { id: "d", text: "IA generativa" },
     ],
     answer: "a",
@@ -241,8 +241,8 @@ export const quiz01 = defineQuiz([
     prompt: "No modelo do fertilizante (w = 0,4; b = 5), o que b representa?",
     options: [
       { id: "a", text: "O crescimento previsto quando não há fertilizante" },
-      { id: "b", text: "Quanto a planta cresce a mais por grama" },
-      { id: "c", text: "O erro do modelo" },
+      { id: "b", text: "Quanto a planta cresce a mais por grama aplicado" },
+      { id: "c", text: "O erro médio do modelo nos dados de treino" },
       { id: "d", text: "A quantidade ideal de fertilizante" },
     ],
     answer: "a",
@@ -337,8 +337,8 @@ export const quiz01 = defineQuiz([
     prompt: "Em qual caso uma regra escrita à mão costuma ser a melhor escolha?",
     options: [
       { id: "a", text: "Reprovar cordão de solda com largura acima de 2 mm" },
-      { id: "b", text: "Detectar porosidade sob iluminação variável" },
-      { id: "c", text: "Reconhecer rostos em fotos" },
+      { id: "b", text: "Detectar porosidade na solda sob iluminação variável" },
+      { id: "c", text: "Reconhecer rostos de funcionários em fotos da portaria" },
       { id: "d", text: "Classificar o sentimento de comentários" },
     ],
     answer: "a",
@@ -393,9 +393,9 @@ export const quiz01 = defineQuiz([
     prompt: "Pela definição de Mitchell, quando dizemos que um programa aprendeu?",
     options: [
       { id: "a", text: "Quando o desempenho na tarefa melhora com a experiência" },
-      { id: "b", text: "Quando roda sem nenhum erro de execução" },
+      { id: "b", text: "Quando executa a tarefa inteira sem nenhum erro de execução" },
       { id: "c", text: "Quando tem mais regras que a versão anterior" },
-      { id: "d", text: "Quando usa redes neurais" },
+      { id: "d", text: "Quando passa a usar redes neurais em vez de regras" },
     ],
     answer: "a",
     explanation:
@@ -448,10 +448,10 @@ export const quiz01 = defineQuiz([
     tags: ["hierarquia"],
     prompt: "O que diferencia o Deep Learning de outros métodos de ML, segundo o módulo?",
     options: [
-      { id: "a", text: "Aprende as features direto do dado bruto, com redes de muitas camadas" },
-      { id: "b", text: "Não precisa de dados para aprender" },
-      { id: "c", text: "Usa apenas regras escritas à mão" },
-      { id: "d", text: "Só funciona com dados em tabela" },
+      { id: "a", text: "Aprende as features sozinho, direto do dado bruto" },
+      { id: "b", text: "Precisa de menos dados que os outros métodos de ML" },
+      { id: "c", text: "Usa regras escritas por especialistas em cada camada" },
+      { id: "d", text: "Só funciona com dados organizados em tabelas" },
     ],
     answer: "a",
     explanation:
@@ -475,9 +475,9 @@ export const quiz01 = defineQuiz([
     prompt: "Uma Random Forest que prevê falha de motor a partir de sensores é melhor classificada como:",
     options: [
       { id: "a", text: "Machine Learning, mas não Deep Learning" },
-      { id: "b", text: "Deep Learning" },
-      { id: "c", text: "IA generativa" },
-      { id: "d", text: "Programação tradicional" },
+      { id: "b", text: "Deep Learning, porque combina muitas árvores" },
+      { id: "c", text: "IA generativa, porque gera previsões" },
+      { id: "d", text: "Programação tradicional com regras fixas" },
     ],
     answer: "a",
     explanation:
@@ -534,8 +534,8 @@ export const quiz01 = defineQuiz([
     options: [
       { id: "a", text: "Porque a IA generativa atual é construída com redes profundas" },
       { id: "b", text: "Porque é impossível gerar conteúdo sem rede neural" },
-      { id: "c", text: "Porque IA generativa não usa dados" },
-      { id: "d", text: "Porque todo Deep Learning é generativo" },
+      { id: "c", text: "Porque IA generativa não precisa de dados de treino rotulados" },
+      { id: "d", text: "Porque todo modelo de Deep Learning é, por definição, generativo" },
     ],
     answer: "a",
     explanation:
@@ -677,9 +677,9 @@ export const quiz01 = defineQuiz([
       "Um modelo de previsão de falha passa de 70% para 85% de acerto depois de receber mais 6 meses de histórico. Pela definição de Mitchell, o que é E nesse caso?",
     options: [
       { id: "a", text: "Os 6 meses adicionais de histórico" },
-      { id: "b", text: "O acerto de 85%" },
-      { id: "c", text: "Prever falhas de motor" },
-      { id: "d", text: "O algoritmo usado" },
+      { id: "b", text: "O acerto, que subiu de 70% para 85%" },
+      { id: "c", text: "A tarefa: prever falhas de motor" },
+      { id: "d", text: "O algoritmo usado no retreino" },
     ],
     answer: "a",
     explanation:
@@ -737,7 +737,7 @@ export const quiz01 = defineQuiz([
       "Um modelo de inspeção foi treinado só com fotos do turno da manhã e erra muito à noite. Qual a causa mais provável, pelo que o módulo ensina?",
     options: [
       { id: "a", text: "Os dados de treino não representam as condições reais de uso" },
-      { id: "b", text: "O modelo é simples demais e precisa de mais camadas" },
+      { id: "b", text: "O modelo é simples demais e precisa de mais camadas ocultas para isso" },
       { id: "c", text: "Faltam regras escritas à mão para a noite" },
       { id: "d", text: "A IA decidiu ignorar o turno da noite" },
     ],

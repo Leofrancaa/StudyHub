@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { courseSources } from "@content/courses";
 import { courseSchema } from "./schema";
-import { crossValidateCourses, parseCourses } from "./validate";
+import { answerLengthIssues, crossValidateCourses, parseCourses } from "./validate";
 
 /**
  * Este arquivo roda no `prebuild`: conteúdo inválido derruba o build.
@@ -47,5 +47,22 @@ describe("validador detecta conteúdo quebrado", () => {
     mod.quiz = mod.quiz.slice(0, 5);
     mod.quiz[0]!.tags = ["tag-que-nao-existe"];
     expect(() => parseCourses([broken])).toThrow(/mínimo|tags sem slide/);
+  });
+
+  it("acusa o padrão \"a resposta certa é a mais longa\"", () => {
+    const q = (id: string, correct: string) => ({
+      id,
+      answer: "a",
+      options: [
+        { id: "a", text: correct },
+        { id: "b", text: "Errada curta" },
+        { id: "c", text: "Outra errada" },
+      ],
+    });
+    const biased = answerLengthIssues([q("q1", "Resposta certa muito mais detalhada que as outras"), q("q2", "A certa, maior")]);
+    expect(biased.tooLong).toEqual(["q1"]);
+    expect(biased.longestShare).toBe(1);
+    const fair = answerLengthIssues([q("q3", "Certa"), q("q4", "Também certa")]);
+    expect(fair).toEqual({ tooLong: [], longestShare: 0 });
   });
 });

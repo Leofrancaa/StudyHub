@@ -2,6 +2,25 @@ import { allocateByDifficulty, DIFFICULTIES } from "@/lib/quiz/engine";
 import { courseSchema, type Course } from "./schema";
 
 export const MIN_BANK_MULTIPLIER = 5;
+/** Fração máxima de questões de resposta única em que a correta é a alternativa mais longa (acaso com 4 opções = 25%). */
+export const MAX_LONGEST_CORRECT_SHARE = 0.35;
+/** A correta não pode passar deste múltiplo da maior alternativa errada. */
+export const MAX_CORRECT_LENGTH_RATIO = 1.4;
+
+type SingleAnswer = { id: string; options: { id: string; text: string }[]; answer: string };
+
+/** Detecta o padrão "a resposta certa é sempre a mais longa" nas questões de resposta única. */
+export function answerLengthIssues(questions: readonly SingleAnswer[]): { tooLong: string[]; longestShare: number } {
+  const tooLong: string[] = [];
+  let longest = 0;
+  for (const q of questions) {
+    const correct = q.options.find((o) => o.id === q.answer)?.text.length ?? 0;
+    const maxWrong = Math.max(...q.options.filter((o) => o.id !== q.answer).map((o) => o.text.length));
+    if (correct > maxWrong) longest++;
+    if (correct > MAX_CORRECT_LENGTH_RATIO * maxWrong) tooLong.push(q.id);
+  }
+  return { tooLong, longestShare: questions.length === 0 ? 0 : longest / questions.length };
+}
 
 /** Regras que dependem de mais de um campo (o schema Zod cobre a forma de cada item). */
 export function crossValidateCourses(courses: readonly Course[]): string[] {
@@ -41,6 +60,17 @@ export function crossValidateCourses(courses: readonly Course[]): string[] {
         if (available < targets[d] * 2) {
           errors.push(`${at}: só ${available} questões "${d}"; mínimo ${targets[d] * 2} para variar entre tentativas`);
         }
+      }
+
+      const single = mod.quiz.filter((q) => q.type === "multiple-choice");
+      const { tooLong, longestShare } = answerLengthIssues(single);
+      if (tooLong.length > 0) {
+        errors.push(`${at}: resposta certa bem mais longa que as erradas (> ${MAX_CORRECT_LENGTH_RATIO}×): ${tooLong.join(", ")}`);
+      }
+      if (longestShare > MAX_LONGEST_CORRECT_SHARE) {
+        errors.push(
+          `${at}: a resposta certa é a mais longa em ${Math.round(longestShare * 100)}% das questões de resposta única; máximo ${MAX_LONGEST_CORRECT_SHARE * 100}%`,
+        );
       }
 
       const slideTags = new Set(mod.slides.flatMap((s) => s.tags));
