@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /** Paleta fixa das cenas (boa leitura nos dois temas). */
@@ -37,6 +37,25 @@ function useInView<T extends Element>() {
   return { ref, inView };
 }
 
+let webglCache: boolean | undefined;
+function detectWebGL(): boolean {
+  if (webglCache === undefined) {
+    try {
+      const canvas = document.createElement("canvas");
+      webglCache = Boolean(canvas.getContext("webgl2") ?? canvas.getContext("webgl"));
+    } catch {
+      webglCache = false;
+    }
+  }
+  return webglCache;
+}
+const noopSubscribe = () => () => {};
+
+/** null no servidor; no cliente, se o navegador suporta WebGL (verificado uma vez). */
+function useWebGLSupport(): boolean | null {
+  return useSyncExternalStore(noopSubscribe, detectWebGL, () => null);
+}
+
 type SceneShellProps = {
   children: ReactNode;
   /** Controles HTML (sliders, botões) exibidos abaixo do canvas. */
@@ -51,13 +70,19 @@ type SceneShellProps = {
 
 export function SceneShell({ children, controls, status, animated = false, camera = [6, 5, 8], label }: SceneShellProps) {
   const { ref, inView } = useInView<HTMLDivElement>();
+  const webgl = useWebGLSupport();
   const reduceMotion = useReducedMotion();
   const frameloop = !inView ? "never" : animated && !reduceMotion ? "always" : "demand";
 
   return (
     <div className="flex flex-col">
       <div ref={ref} className="relative aspect-[16/10] min-h-64 w-full touch-none" role="img" aria-label={label}>
-        {inView && (
+        {webgl === false && (
+          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-muted">
+            Este navegador não suporta WebGL, então a cena 3D não pode ser exibida. Os controles e a legenda continuam valendo.
+          </div>
+        )}
+        {inView && webgl && (
           <Canvas frameloop={frameloop} dpr={[1, 1.75]} camera={{ position: camera, fov: 45 }} gl={{ antialias: true, alpha: true }}>
             <ambientLight intensity={0.7} />
             <directionalLight position={[5, 10, 6]} intensity={1.1} />
@@ -65,7 +90,7 @@ export function SceneShell({ children, controls, status, animated = false, camer
             {children}
           </Canvas>
         )}
-        <p className="pointer-events-none absolute bottom-2 right-3 text-[0.7rem] font-medium text-muted">Arraste para girar · role para zoom</p>
+        {webgl && <p className="pointer-events-none absolute bottom-2 right-3 text-[0.7rem] font-medium text-muted">Arraste para girar · role para zoom</p>}
       </div>
       {(controls || status) && (
         <div className="space-y-3 border-t border-line p-4">
